@@ -1,0 +1,8 @@
+<?php
+function pushSessionState($session_id, $state_json) {
+    $conn = new mysqli('localhost', 'root', '', 'fog_security');
+    $stmt = $conn->prepare("UPDATE routing_table SET session_state=? WHERE session_id=?");
+    $stmt->bind_param("ss", $state_json, $session_id);
+    $stmt->execute();
+}
+?>
